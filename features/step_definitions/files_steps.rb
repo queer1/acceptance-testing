@@ -10,6 +10,18 @@ Given /^I have uploaded the "([^"]*)" files?$/ do |file_set|
   end
 end
 
+When /^I created the directories$/ do
+    page.find('#new').click
+    page.find(:xpath, "//li[@data-type='folder']").click
+    page.find(:xpath, "//li[@data-type='folder']/form/input").set "Music"
+    print page.html
+    page.find(:xpath, "//li[@data-type='folder']/form/input").native.send_key(:return)
+    #page.find('#new').click
+    #page.find(:xpath, "//li[@data-type='folder']").click
+    #page.find(:xpath, "//li[@data-type='folder']/form/input").set("Photos")
+    #page.find(:xpath, "//li[@data-type='folder']/form/input").native.send_key(:return)
+end
+
 Then /^([^"]*) should be of type ([^"]*)$/ do |name, mime|
     page.should have_xpath("//tr[@data-file=\"#{name}\" and @data-mime=\"#{mime}\"]")
 end

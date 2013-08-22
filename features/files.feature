@@ -6,11 +6,10 @@ Feature: files
 
   Background:
     Given I am logged in
-    Then show me the response
     # these are the files hosted on demo.owncloud.org
     And I am in the "files" app
     And I have uploaded the "demo" files
-    # TODO upload directories
+    And I created the directories
 
   Scenario Outline: list files
 #    When I go to "/"
@@ -23,19 +22,19 @@ Feature: files
     Examples:
       | mime                 | name                                             | bytes    | human    |
       | text/x-c             | Demo Code - C++.cc                               | 3066     | 3 kB     |
-      | text/x-php           | Demo Code - PHP.php                              | 3705     | 3.6 kB   |
+      | application/x-php    | Demo Code - PHP.php                              | 3705     | 3.6 kB   |
       | text/x-script.phyton | Demo Code - Python.py                            | 875      | 875 B    |
       | image/jpeg           | Demo Image - ccc.jpg                             | 166367   | 162.5 kB |
       | image/jpeg           | Demo Image - Laser Towards Milky Ways Centre.jpg | 315057   | 307.7 kB |
       | image/jpeg           | Demo Image - Northern Lights.jpg                 | 224246   | 219 kB   |
       | video/quicktime      | Demo Movie MOV - Big Bug Bunny Trailer.mov       | 11061011 | 10.5 MB  |
-      | application/ogg      | Demo Movie OGG - Big Bug Bunny Trailer.ogg       | 4360399  | 4.2 MB   |
+      | audio/ogg            | Demo Movie OGG - Big Bug Bunny Trailer.ogg       | 4360399  | 4.2 MB   |
       | audio/mpeg           | Demo MP3 - E.J. - Blick Zurück.mp3               | 2998100  | 2.9 MB   |
       | application/pdf      | Demo PDF - Alice in Wonderland.pdf               | 711671   | 695 kB   |
       | text/plain           | Demo Textfile - License.txt                      | 2016     | 2 kB     |
       | httpd/unix-directory | Music                                            | 73705595 | 70.3 MB  |
       | httpd/unix-directory | Photos                                           | 784677   | 766.3 kB |
-    
+
   Scenario Outline: show file actions on hover
 #    And I go to /
     When I hover over <entry>
@@ -45,8 +44,8 @@ Feature: files
     
     Examples:
       | entry                                            |
-#      | Music                                            |
-#      | Photos                                           |
+      | Music                                            |
+      | Photos                                           |
       | Demo Code - C++.cc                               |
       | Demo Code - PHP.php                              |
       | Demo Code - Python.py                            |
